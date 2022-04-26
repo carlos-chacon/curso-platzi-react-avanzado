@@ -1,6 +1,10 @@
 import React from 'react'
-import { Category } from './components/Category'
+import { ListOfCategory } from './components/ListOfCategory'
+import { GlobalStyles } from './GlobalStyles'
 
 export const App = () => (
-  <Category />
+  <div>
+    <GlobalStyles />
+    <ListOfCategory />
+  </div>
 )
