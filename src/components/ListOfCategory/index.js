@@ -3,16 +3,26 @@ import { Category } from '../Category'
 import { Item, List } from './styles'
 // import db from '../../../api/db.json'
 
-export const ListOfCategory = () => {
+const useCategoriesData = () => {
   const [categories, setCategories] = useState([])
-  const [showFixed, setShowFixed] = useState(false)
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
+    setLoading(true)
     window.fetch('https://petgram-server-carlos-chacon.vercel.app/categories')
       .then(res => res.json())
       .then(response => {
         setCategories(response)
+        setLoading(false)
       })
   }, [])
+
+  return { categories, loading }
+}
+
+export const ListOfCategory = () => {
+  const { categories, loading } = useCategoriesData()
+
+  const [showFixed, setShowFixed] = useState(false)
 
   useEffect(() => {
     const onScroll = e => {
@@ -24,9 +34,11 @@ export const ListOfCategory = () => {
   }, [showFixed])
 
   const renderList = (fixed) => (
-    <List className={fixed ? 'fixed' : ''}>
+    <List fixed={fixed}>
       {
-        categories.map(category => <Item key={category.id}> <Category {...category} /> </Item>)
+        loading
+          ? <Item key='loading'><Category /></Item>
+          : categories.map(category => <Item key={category.id}> <Category {...category} /> </Item>)
       }
     </List>
   )
