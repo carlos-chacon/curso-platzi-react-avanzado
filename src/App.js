@@ -8,20 +8,19 @@ import { GlobalStyles } from './styles/GlobalStyles'
 export const App = () => {
   const urlParams = new window.URLSearchParams(window.location.search)
   const detailId = urlParams.get('detail')
-  console.log(detailId)
+  const renderProp = detailId
+    ? <PhotoCardWithQuery id={detailId} />
+    : (
+      <>
+        <ListOfCategory />
+        <ListOfPhotoCard categoryId={2} />
+      </>
+      )
   return (
     <div>
       <GlobalStyles />
       <Logo />
-      {
-        detailId
-          ? <PhotoCardWithQuery id={detailId} />
-          : <>
-            <ListOfCategory />
-            <ListOfPhotoCard categoryId={2} />
-            </>
-      }
-
+      {renderProp}
     </div>
   )
 }
