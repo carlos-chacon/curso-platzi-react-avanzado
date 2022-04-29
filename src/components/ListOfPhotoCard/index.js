@@ -3,6 +3,6 @@ import { PhotoCard } from '../PhotoCard'
 
 export const ListOfPhotoCard = () => {
   return (
-    [1, 2, 3, 4, 5].map(id => <PhotoCard key={id} />)
+    [1, 2, 3, 4, 5, 6, 7, 8].map(id => <PhotoCard key={id} />)
   )
 }
