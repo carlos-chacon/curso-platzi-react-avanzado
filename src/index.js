@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 // import ReactDOM from 'react-dom'
 import { createRoot } from 'react-dom/client'
@@ -15,6 +16,8 @@ const root = createRoot(container)
 // ReactDOM.render(<App />, document.getElementById('app'))
 root.render(
   <ApolloProvider client={client}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ApolloProvider>
 )

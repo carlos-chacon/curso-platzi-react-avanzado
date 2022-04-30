@@ -1,8 +1,8 @@
 import React from 'react'
-import { ListOfCategory } from './components/ListOfCategory'
-import { ListOfPhotoCard } from './components/ListOfPhotoCard'
+import { Routes, Route } from 'react-router-dom'
 import { Logo } from './components/Logo'
 import { PhotoCardWithQuery } from './containers/PhotoCardWithQuery'
+import { Home } from './pages/Home'
 import { GlobalStyles } from './styles/GlobalStyles'
 
 export const App = () => {
@@ -11,10 +11,10 @@ export const App = () => {
   const renderProp = detailId
     ? <PhotoCardWithQuery id={detailId} />
     : (
-      <>
-        <ListOfCategory />
-        <ListOfPhotoCard categoryId={2} />
-      </>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/pet/:id' element={<Home />} />
+      </Routes>
       )
   return (
     <div>
