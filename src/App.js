@@ -3,6 +3,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Logo } from './components/Logo'
 import { NavBar } from './components/NavBar'
+import Context from './Context'
 import { Detail } from './pages/Detail'
 import { Favs } from './pages/Favs'
 import { Home } from './pages/Home'
@@ -11,9 +12,6 @@ import { User } from './pages/User'
 import { GlobalStyles } from './styles/GlobalStyles'
 
 export const App = () => {
-  const UserLogged = ({ children }) => {
-    return children({ isAuth: false })
-  }
   return (
     <div>
       <GlobalStyles />
@@ -23,7 +21,7 @@ export const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/pet/:id' element={<Home />} />
       </Routes>
-      <UserLogged>
+      <Context.Consumer>
         {
           ({ isAuth }) =>
             isAuth
@@ -36,7 +34,7 @@ export const App = () => {
                 <Route path='/user' element={<NotRegisteredUser />} />
               </Routes>
         }
-      </UserLogged>
+      </Context.Consumer>
       <NavBar />
     </div>
   )
