@@ -1,7 +1,18 @@
 import React from 'react'
+import Context from '../Context'
 
 export const NotRegisteredUser = () => {
   return (
-    <div>NotRegisteredUser</div>
+    <Context.Consumer>
+      {
+      ({ isAuth, activateAuth }) => {
+        return (
+          <form onSubmit={activateAuth}>
+            <button>Iniciar session</button>
+          </form>
+        )
+      }
+      }
+    </Context.Consumer>
   )
 }
