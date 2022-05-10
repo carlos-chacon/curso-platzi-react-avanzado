@@ -25,11 +25,7 @@ const authLink = setContext((_, { headers }) => {
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message, locations, path }) => {
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
       window.sessionStorage.removeItem('token')
-      // window.location.href = '/user'
     })
   }
   if (networkError && networkError.result.code === 'invalid_token') {
