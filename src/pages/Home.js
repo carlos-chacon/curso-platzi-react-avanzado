@@ -4,7 +4,7 @@ import { Layout } from '../components/Layout'
 import { ListOfCategory } from '../components/ListOfCategory'
 import { ListOfPhotoCard } from '../components/ListOfPhotoCard'
 
-export const Home = () => {
+const HomePage = () => {
   const { id } = useParams()
   return (
     <Layout title='Fotos de mascotas' subtitle='Con petgram puede encontrar fotos de animales domésticos muy bonitos'>
@@ -13,3 +13,7 @@ export const Home = () => {
     </Layout>
   )
 }
+
+export const Home = React.memo(HomePage, (prevProps, pros) => {
+  return prevProps.id === pros.id
+})

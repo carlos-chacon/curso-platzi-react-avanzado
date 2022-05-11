@@ -7,6 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "now-build": "npm run build",
         "build": "webpack",
+        "serve:dev": "webpack --mode=development && npx serve dist -s",
         "lint": "standard",
         "dev": "webpack-dev-server --history-api-fallback"
     },
