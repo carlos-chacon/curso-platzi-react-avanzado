@@ -1,22 +1,23 @@
 /* eslint-disable react/jsx-closing-tag-location */
-import React, { useContext } from 'react'
+import React, { useContext, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Logo } from './components/Logo'
 import { NavBar } from './components/NavBar'
 import { Context } from './Context'
-import { Detail } from './pages/Detail'
-import { Favs } from './pages/Favs'
-import { Home } from './pages/Home'
-import { NotFound } from './pages/NotFound'
-import { NotRegisteredUser } from './pages/NotRegisteredUser'
-import { User } from './pages/User'
 import { GlobalStyles } from './styles/GlobalStyles'
+
+const Favs = React.lazy(() => import('./pages/Favs'))
+const Detail = React.lazy(() => import('./pages/Detail'))
+const Home = React.lazy(() => import('./pages/Home'))
+const User = React.lazy(() => import('./pages/User'))
+const NotRegisteredUser = React.lazy(() => import('./pages/NotRegisteredUser'))
+const NotFound = React.lazy(() => import('./pages/NotFound'))
 
 export const App = () => {
   const { isAuth } = useContext(Context)
   console.log(isAuth)
   return (
-    <div>
+    <Suspense fallback={<div />}>
       <GlobalStyles />
       <Logo />
       <Routes>
@@ -29,6 +30,6 @@ export const App = () => {
         <Route path='*' element={<NotFound />} />
       </Routes>
       <NavBar />
-    </div>
+    </Suspense>
   )
 }
