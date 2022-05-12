@@ -4,7 +4,7 @@
     "description": "**¡Sígueme en YouTube para más contenido de React y Javascript!** 👉 https://www.youtube.com/midudev",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "cypress open",
         "now-build": "npm run build",
         "build": "webpack",
         "serve:dev": "webpack --mode=development && npx serve dist -s",
@@ -27,6 +27,7 @@
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-react": "^7.16.7",
         "babel-loader": "^8.2.5",
+        "cypress": "^9.6.1",
         "html-webpack-plugin": "^5.5.0",
         "prettier": "2.6.2",
         "standard": "^17.0.0",

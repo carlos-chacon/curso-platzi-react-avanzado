@@ -23,14 +23,16 @@ module.exports = {
         {
           src: path.resolve('src/assets/icon.png'),
           sizes: [192, 256, 384, 512],
-          purpose: 'any'
+          purpose: 'any',
+          ios: true
         }
       ]
     }),
     new WorkboxWebpackPlugin.GenerateSW({
       runtimeCaching: [
         {
-          urlPattern: /https:\/\/(res.cloudinary.com|images.unsplash.com)/,
+          // eslint-disable-next-line prefer-regex-literals
+          urlPattern: new RegExp('https://(res.cloudinary.com|images.unsplash.com)'),
           handler: 'CacheFirst',
           options: {
             cacheName: 'images'
